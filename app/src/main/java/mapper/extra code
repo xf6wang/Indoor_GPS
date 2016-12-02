@@ -1,0 +1,20 @@
+List<InterceptPoint> walls;
+        walls = map.calculateIntersections(startP, endP);
+        for (int i = 0; i < walls.size(); i++) {
+            PointF startE = walls.get(i).getLine().start;
+            PointF endE = walls.get(i).getLine().end;
+            boolean alreadyThere = false;
+            for(int j = 0; j < nodes.size(); j++){
+                if((Math.abs(nodes.get(j).x - startE.x) < 0.5) || (Math.abs(nodes.get(j).y -  startE.x) < 0.5 ) ||
+                        (Math.abs(nodes.get(j).x - endE.x) < 0.5) || (Math.abs(nodes.get(j).y -  endE.x) < 0.5 )){
+                    alreadyThere = true;
+                }
+            }
+            if(!alreadyThere) {
+                nodes.add(startE);
+                nodes.add(endE);
+            }
+        }
+        Log.e("WALLS", "" +  walls);
+        Log.e("NODES", "" + nodes);
+    }
